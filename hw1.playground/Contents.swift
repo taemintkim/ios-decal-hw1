@@ -22,11 +22,11 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: no, they are optionals and doesn't check if they're nil or actual strings.
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(_ words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
@@ -35,18 +35,19 @@ class Words {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: dis shit ain't returning no true so they waz returning nil.
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
+    func isAnagram() -> Bool? {
+        var countLetters = [Character : Int?]() //Line X
         var lenA = self.wordA.characters.count
         var lenB = self.wordB.characters.count
         
@@ -60,7 +61,7 @@ class Words {
         for i in 0...lenA-1 {
             let letter = arrA[i]
             if let val = countLetters[letter] { //Line Y
-                countLetters[letter] = val + 1
+                countLetters[letter] = val! + 1
             } else {
                 countLetters[letter] = 1
             }
@@ -69,7 +70,7 @@ class Words {
         for i in 0...lenB-1 {
             let letter = arrB[i]
             if let val = countLetters[letter] {
-                countLetters[letter] = val - 1
+                countLetters[letter] = val! - 1
             } else {
                 return false
             }
@@ -89,7 +90,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: countLetters was never initialized, Int val of the dictionary could be nil so i changed that shit to an optional. if we dealin' w optionals, u gotta unwrap it like a prezent. made a static function using instance variables? rookie mistake.
     
     
 }
